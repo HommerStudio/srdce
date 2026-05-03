@@ -2,18 +2,14 @@
    CSS VARIABLES (Color Palette from the Poster)
    ========================================================= */
 :root {
-    --color-bg-cream: #Faf4ea; /* The warm poster background */
-    --color-text-dark: #4a3e2a; /* Deep brown for text */
-    --color-accent-gold: #c29d51; /* The golden color of the church */
-    --color-accent-red: #d92d27; /* The red umbrella color */
-    --color-blue-rain: #5b9bd5; /* The blue raindrops */
+    --color-bg-cream: #Faf4ea;
+    --color-text-dark: #4a3e2a;
+    --color-accent-gold: #c29d51;
+    --color-accent-red: #d92d27;
     
     --font-main: 'Merriweather', serif;
 }
 
-/* =========================================================
-   RESET & BASE STYLES
-   ========================================================= */
 * {
     margin: 0;
     padding: 0;
@@ -26,153 +22,156 @@ body, html {
     font-family: var(--font-main);
     background-color: var(--color-bg-cream);
     color: var(--color-text-dark);
-    overflow: hidden; 
 }
 
 /* =========================================================
-   BACKGROUND CHURCH ILLUSTRATION
+   BACKGROUND CHURCH ILLUSTRATION (MASSIVE WATERMARK)
    ========================================================= */
 .church-illustration-bg {
-    position: absolute;
+    position: fixed; 
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -40%);
-    z-index: 1;
-    width: 100%;
-    max-width: 800px;
-    opacity: 0.15; /* Makes it a subtle watermark behind the text */
-    pointer-events: none;
+    transform: translate(-50%, -50%); 
+    z-index: 1; 
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+    opacity: 0.18; /* Slightly increased opacity so it stands out more */
+    pointer-events: none; 
 }
 
 .church-illustration-bg img {
-    width: 100%;
-    height: auto;
+    height: 140vh; /* Forces the image to be 40% taller than the screen, making it huge */
+    width: auto;   /* Keeps the natural proportions of the cutout */
+    max-width: none; /* Removes any default size limits */
+    object-fit: contain;
 }
 
 /* =========================================================
-   UI LAYER & PAPER CARDS
+   UI LAYER & NAVIGATION
    ========================================================= */
 .ui-layer {
     position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
+    min-height: 100%; 
 }
 
-/* Light, elegant navigation */
 .antique-glass-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
-    background: rgba(250, 244, 234, 0.8);
+    padding: 1rem 1.5rem; 
+    background: rgba(250, 244, 234, 0.9);
     backdrop-filter: blur(8px);
     border-bottom: 2px solid var(--color-accent-gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem; 
     font-weight: 900;
-    color: var(--color-text-dark);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Vintage Outline Button for Language Toggle */
 .vintage-btn {
     background: transparent;
     color: var(--color-text-dark);
     border: 2px solid var(--color-text-dark);
-    padding: 0.4rem 1rem;
+    padding: 0.3rem 0.8rem;
     font-family: var(--font-main);
     font-weight: 700;
-    border-radius: 6px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
-.vintage-btn:hover {
-    background: var(--color-text-dark);
-    color: var(--color-bg-cream);
-}
-
-/* Main Content Area */
+/* =========================================================
+   MAIN CONTENT & PAPER CARD
+   ========================================================= */
 .content-container {
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1.5rem; 
 }
 
-/* The central card styled like a poster/paper */
 .paper-card {
     text-align: center;
-    padding: 3.5rem;
-    background: #ffffff; /* Clean white card over the cream background */
+    padding: 2.5rem 1.5rem; 
+    background: rgba(255, 255, 255, 0.92); /* Slight transparency */
     border: 2px solid var(--color-accent-gold);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(74, 62, 42, 0.1);
-    max-width: 650px;
+    box-shadow: 0 10px 30px rgba(74, 62, 42, 0.15);
+    max-width: 600px;
     width: 100%;
+    margin-bottom: 5rem; 
 }
 
 .subheading {
-    font-size: 1rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     color: var(--color-accent-gold);
     margin-bottom: 0.5rem;
 }
 
 .paper-card h1 {
-    font-size: 3.2rem;
+    font-size: 2.2rem; 
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 1rem;
-    color: var(--color-text-dark);
+    line-height: 1.2;
 }
 
 .vintage-divider {
     border: 0;
     height: 2px;
     background: var(--color-accent-gold);
-    margin: 2rem auto;
-    width: 50%;
+    margin: 1.5rem auto;
+    width: 60%; 
 }
 
 .paper-card p {
-    font-size: 1.25rem;
-    line-height: 1.7;
-    font-weight: 400;
+    font-size: 1.1rem;
+    line-height: 1.6;
     color: #5c4f3a;
 }
 
-/* Solid red button to match the umbrella */
 .solid-btn {
     background: var(--color-accent-red);
     color: white;
     border: none;
-    padding: 1rem 2.5rem;
+    padding: 1rem 2rem;
     font-family: var(--font-main);
     font-weight: 700;
     font-size: 1.1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s ease;
     box-shadow: 0 4px 15px rgba(217, 45, 39, 0.3);
 }
 
-.solid-btn:hover {
-    background: #b8221d;
+/* =========================================================
+   FOOTER LOGO FIX
+   ========================================================= */
+.footer-logo {
+    position: fixed; 
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 50;
+    background: rgba(250, 244, 234, 0.8); 
+    padding: 5px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
 }
 
 .footer-logo img {
-    width: 120px;
+    width: 80px; 
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: block; 
 }
