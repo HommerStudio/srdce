@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srdce v běhu | Heart in Motion</title>
+    <title>Srdce v běhu | Vraťme život kostelu</title>
     
-    <!-- Link to our CSS Materials -->
     <link rel="stylesheet" href="style.css">
     
-    <!-- Importing a classic, vintage serif font for that old-world feel -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Using a bold, slightly playful serif font to match the poster's typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- BACKGROUND LAYER: WebGL Canvas and Vintage Grain -->
-    <div id="canvas-container"></div>
-    <div class="vintage-film-grain"></div>
+    <!-- NEW: The church illustration as a background watermark behind the content -->
+    <div class="church-illustration-bg">
+        <!-- You will need to crop the church out of the poster and save it as 'church-cutout.png' with a transparent background -->
+        <img src="church-cutout.png" alt="Kostel sv. Václava s deštníkem">
+    </div>
 
     <!-- UI LAYER: Everything the user interacts with -->
     <div class="ui-layer">
@@ -22,33 +23,37 @@
         <!-- Navigation bar -->
         <header class="antique-glass-nav">
             <div class="logo">
-                <h2 id="nav-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Heart in Motion</h2>
+                <h2 id="nav-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h2>
             </div>
             
             <div class="controls">
-                <button id="lang-toggle" class="vintage-btn">CS</button>
-                <button id="play-btn" class="vintage-btn">▶</button>
+                <button id="lang-toggle" class="vintage-btn">EN</button>
             </div>
         </header>
 
         <!-- Main Content Area -->
         <main class="content-container">
-            <!-- Central Hero Card mapping your specific mission -->
-            <section class="hero-card antique-glass-card">
-                <h1 id="hero-heading" data-en="Compassion. Support. Sanctuary." data-cs="Soucit. Podpora. Útočiště.">
-                    Compassion. Support. Sanctuary.
+            <!-- Central Hero Card mapping to the poster's mission -->
+            <section class="hero-card paper-card">
+                
+                <h3 class="subheading" data-en="KOSTEL SV. VÁCLAVA" data-cs="KOSTEL SV. VÁCLAVA">
+                    KOSTEL SV. VÁCLAVA
+                </h3>
+                
+                <h1 id="hero-heading" data-en="Let's bring life back to the church" data-cs="Vraťme život kostelu">
+                    Vraťme život kostelu
                 </h1>
                 
                 <hr class="vintage-divider">
                 
-                <p id="hero-desc" data-en="Bringing life and hope back to the psychologically vulnerable and those walking the hardest paths. A safe haven for everyone, no matter their journey." data-cs="Vracíme život a naději duševně nemocným a těm, kteří kráčí po nejtěžších životních cestách. Bezpečný přístav pro všechny, bez ohledu na jejich osud.">
-                    Bringing life and hope back to the psychologically vulnerable and those walking the hardest paths. A safe haven for everyone, no matter their journey.
+                <p id="hero-desc" data-en="Help repair the roof of the church that is here for everyone. A safe haven for the psychologically vulnerable and those walking the hardest paths." data-cs="Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.">
+                    Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.
                 </p>
 
-                <!-- Action Button for Donations/Help based on the flyer -->
+                <!-- Action Button for Donations -->
                 <div style="margin-top: 2.5rem;">
-                    <button class="vintage-btn" style="font-size: 1.1rem; padding: 0.8rem 2rem;" data-en="How to Help" data-cs="Jak pomoci">
-                        How to Help
+                    <button id="donate-btn" class="solid-btn" data-en="Donate Now" data-cs="Přispět nyní">
+                        Přispět nyní
                     </button>
                 </div>
             </section>
@@ -56,16 +61,11 @@
 
         <!-- Bottom Left Logo Integration -->
         <div class="footer-logo" style="position: absolute; bottom: 2rem; left: 2rem; z-index: 50;">
-            <!-- Make sure 1000013379.jpg is in the same folder as this HTML file -->
-            <img src="1000013379.jpg" alt="Srdce v běhu Logo" style="width: 130px; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); opacity: 0.85; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+            <img src="1000013379.jpg" alt="Srdce v běhu Logo">
         </div>
 
     </div>
 
-    <!-- Hidden audio element - just add an audio file named ambient-track.mp3 to your folder -->
-    <audio id="bg-audio" src="ambient-track.mp3" loop></audio>
-
-    <!-- Link to our JavaScript Functions -->
     <script src="script.js"></script>
 </body>
 </html>
