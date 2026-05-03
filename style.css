@@ -1,6 +1,6 @@
 :root {
     --color-bg-cream: #f4ebd8;
-    --color-page-bg: #fffbf2; 
+    --color-page-bg: rgba(255, 251, 242, 0.96); /* Very slight transparency */
     --color-text-dark: #3e2a14;
     --color-accent-gold: #b89146;
     --color-accent-red: #c92c22;
@@ -13,15 +13,46 @@
     box-sizing: border-box;
 }
 
+/* =========================================================
+   THE PERFECT CHURCH BACKGROUND POSITION
+   ========================================================= */
 html, body {
     width: 100%;
     min-height: 100vh;
     font-family: var(--font-main);
-    background-color: var(--color-bg-cream);
     color: var(--color-text-dark);
-    overflow-x: hidden;
+    background-color: var(--color-bg-cream);
+    
+    /* We put the church directly on the body */
+    background-image: url('church-cutout.png');
+    
+    /* Anchors the image to the bottom center of the screen */
+    background-position: center bottom;
+    
+    /* Prevents the church from repeating like a tile */
+    background-repeat: no-repeat;
+    
+    /* Forces the image to be 85% of the screen height. 
+       This guarantees it is huge, but will never stretch weirdly. */
+    background-size: auto 85vh; 
+    
+    /* Keeps the church locked in place even if the user scrolls the book */
+    background-attachment: fixed; 
 }
 
+/* We add a slight overlay so the church doesn't make the book hard to read if they overlap */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(244, 235, 216, 0.3); /* Warms up the background slightly */
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* =========================================================
+   UI LAYER & NAVIGATION
+   ========================================================= */
 .ui-layer {
     position: relative;
     z-index: 10;
@@ -67,22 +98,20 @@ html, body {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3rem 1rem 0; /* Removed bottom padding so church touches the bottom */
+    padding: 3rem 1rem 7rem;
     display: flex;
-    flex-direction: column; /* Allows stacking the book and the church */
-    align-items: center;
+    justify-content: center;
 }
 
 .bible-container {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     background: var(--color-page-bg);
     border-radius: 8px;
-    box-shadow: 0 20px 50px rgba(62, 42, 20, 0.2), inset 0 0 40px rgba(184, 145, 70, 0.1);
+    box-shadow: 0 20px 50px rgba(62, 42, 20, 0.15), inset 0 0 40px rgba(184, 145, 70, 0.1);
     border: 2px solid #e0cdab;
     overflow: hidden;
     width: 100%;
-    z-index: 20; /* Keeps book above the church */
 }
 
 .bible-page {
@@ -95,7 +124,7 @@ html, body {
 }
 
 .right-page {
-    background: #fdf8eb; 
+    background: rgba(253, 248, 235, 0.96); 
     box-shadow: inset 0 15px 15px -15px rgba(0,0,0,0.1);
 }
 
@@ -163,31 +192,15 @@ html, body {
     width: 200px;
     height: 200px;
     margin: 1.5rem auto;
+    border: 2px solid var(--color-text-dark);
+    padding: 10px;
     background: white;
 }
 
 .qr-placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ensures QR code isn't cropped */
-}
-
-/* =========================================================
-   BIG CHURCH AT BOTTOM
-   ========================================================= */
-.big-church-bottom {
-    width: 100vw;
-    max-width: 800px; /* Adjust this to make church bigger/smaller */
-    margin-top: -3rem; /* Pulls the church up slightly behind the book */
-    z-index: 1; /* Puts it behind the book */
-    position: relative;
-    opacity: 0.7; /* Ensures it is highly visible */
-}
-
-.big-church-bottom img {
-    width: 100%;
-    height: auto;
-    display: block;
+    object-fit: cover;
 }
 
 /* =========================================================
