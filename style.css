@@ -1,16 +1,14 @@
 /* =========================================================
-   CSS VARIABLES (Modular Color Palette & Spacing)
-   Colors: Squid Ink, Parchment, Antique Brass, Embers
+   CSS VARIABLES (Color Palette from the Poster)
    ========================================================= */
 :root {
-    --color-squid-ink: #0b0c10;
-    --color-squid-ink-light: rgba(18, 20, 26, 0.6);
-    --color-parchment: #f4ecd8;
-    --color-brass: #b5944f;
-    --color-brass-dim: rgba(181, 148, 79, 0.3);
-    --color-ember: #d97736;
+    --color-bg-cream: #Faf4ea; /* The warm poster background */
+    --color-text-dark: #4a3e2a; /* Deep brown for text */
+    --color-accent-gold: #c29d51; /* The golden color of the church */
+    --color-accent-red: #d92d27; /* The red umbrella color */
+    --color-blue-rain: #5b9bd5; /* The blue raindrops */
     
-    --font-classic: 'Playfair Display', serif;
+    --font-main: 'Merriweather', serif;
 }
 
 /* =========================================================
@@ -25,42 +23,36 @@
 body, html {
     width: 100%;
     height: 100%;
-    font-family: var(--font-classic);
-    background-color: var(--color-squid-ink);
-    color: var(--color-parchment);
-    overflow: hidden; /* Prevents scrollbars so the WebGL background stays immersive */
+    font-family: var(--font-main);
+    background-color: var(--color-bg-cream);
+    color: var(--color-text-dark);
+    overflow: hidden; 
 }
 
 /* =========================================================
-   BACKGROUND & TEXTURES (GitHub Pages Ready)
+   BACKGROUND CHURCH ILLUSTRATION
    ========================================================= */
-#canvas-container {
+.church-illustration-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
     z-index: 1;
-    /* Temporary dark gradient until we add JS/WebGL in step 3 */
-    background: radial-gradient(circle at center, #1a1c23 0%, var(--color-squid-ink) 100%);
+    width: 100%;
+    max-width: 800px;
+    opacity: 0.15; /* Makes it a subtle watermark behind the text */
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
 }
 
-.vintage-film-grain {
-    position: absolute;
-    top: 0;
-    left: 0;
+.church-illustration-bg img {
     width: 100%;
-    height: 100%;
-    z-index: 9999;
-    pointer-events: none; /* Lets users click through the grain */
-    opacity: 0.4;
-    mix-blend-mode: overlay;
-    /* Base64 Noise embedded directly so no image files break on GitHub Pages */
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjI1Ii8+PC9zdmc+');
+    height: auto;
 }
 
 /* =========================================================
-   UI LAYER & ANTIQUE GLASSMORPHISM
+   UI LAYER & PAPER CARDS
    ========================================================= */
 .ui-layer {
     position: relative;
@@ -71,59 +63,44 @@ body, html {
     width: 100%;
 }
 
-/* Antique Frosted Glass Navigation */
+/* Light, elegant navigation */
 .antique-glass-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    background: var(--color-squid-ink-light);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
-    border-bottom: 1px solid var(--color-brass-dim);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    background: rgba(250, 244, 234, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid var(--color-accent-gold);
 }
 
 .logo h2 {
     font-size: 1.5rem;
-    font-style: italic;
-    color: var(--color-parchment);
-    letter-spacing: 2px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-weight: 900;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.controls {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-/* Vintage Buttons */
+/* Vintage Outline Button for Language Toggle */
 .vintage-btn {
     background: transparent;
-    color: var(--color-parchment);
-    border: 1px solid var(--color-brass-dim);
-    padding: 0.5rem 1rem;
-    font-family: var(--font-classic);
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+    color: var(--color-text-dark);
+    border: 2px solid var(--color-text-dark);
+    padding: 0.4rem 1rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 2px;
+    transition: all 0.2s ease;
 }
 
 .vintage-btn:hover {
-    background: rgba(181, 148, 79, 0.1);
-    border-color: var(--color-brass);
-    color: var(--color-ember); /* Glows like an ember on hover */
-    box-shadow: 0 0 10px rgba(217, 119, 54, 0.2);
+    background: var(--color-text-dark);
+    color: var(--color-bg-cream);
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* Main Content & Hero Card */
+/* Main Content Area */
 .content-container {
     flex-grow: 1;
     display: flex;
@@ -132,53 +109,70 @@ body, html {
     padding: 2rem;
 }
 
-.antique-glass-card {
+/* The central card styled like a poster/paper */
+.paper-card {
     text-align: center;
-    padding: 4rem;
-    background: var(--color-squid-ink-light);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--color-brass-dim);
-    border-radius: 4px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(181, 148, 79, 0.05);
-    max-width: 600px;
+    padding: 3.5rem;
+    background: #ffffff; /* Clean white card over the cream background */
+    border: 2px solid var(--color-accent-gold);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(74, 62, 42, 0.1);
+    max-width: 650px;
     width: 100%;
 }
 
-.antique-glass-card h1 {
-    font-size: 2.8rem;
-    font-weight: 400;
+.subheading {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--color-accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+.paper-card h1 {
+    font-size: 3.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
     margin-bottom: 1rem;
-    color: var(--color-parchment);
+    color: var(--color-text-dark);
 }
 
 .vintage-divider {
     border: 0;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--color-brass), transparent);
-    margin: 2rem 0;
+    height: 2px;
+    background: var(--color-accent-gold);
+    margin: 2rem auto;
+    width: 50%;
 }
 
-.antique-glass-card p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #d1c9b8;
-    font-style: italic;
+.paper-card p {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #5c4f3a;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .antique-glass-nav {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .antique-glass-card {
-        padding: 2rem;
-    }
-    
-    .antique-glass-card h1 {
-        font-size: 2rem;
-    }
+/* Solid red button to match the umbrella */
+.solid-btn {
+    background: var(--color-accent-red);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    box-shadow: 0 4px 15px rgba(217, 45, 39, 0.3);
+}
+
+.solid-btn:hover {
+    background: #b8221d;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
