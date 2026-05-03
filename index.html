@@ -1,74 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srdce v běhu | Vraťme život kostelu</title>
+    <title>Srdce v běhu podporuje Kostel svatého Václava</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <!-- This overlay makes the background image readable -->
-    <div class="bg-overlay"></div>
 
-    <!-- UI LAYER -->
+    <!-- THE BULLETPROOF FULL-SCREEN CHURCH BACKGROUND -->
+    <div class="church-full-bg"></div>
+
     <div class="ui-layer">
         
         <!-- Navigation bar -->
         <header class="antique-glass-nav">
             <div class="logo">
-                <h2 id="nav-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h2>
+                <h2 data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h2>
             </div>
             <div class="controls">
                 <button id="lang-toggle" class="vintage-btn">EN</button>
             </div>
         </header>
 
-        <!-- Main Content Area -->
+        <!-- Main Content Area: The Open Bible -->
         <main class="content-container">
             
-            <!-- Hero Card -->
-            <section class="paper-card">
-                <h3 class="subheading" data-en="KOSTEL SV. VÁCLAVA" data-cs="KOSTEL SV. VÁCLAVA">KOSTEL SV. VÁCLAVA</h3>
-                <h1 id="hero-heading" data-en="Let's bring life back to the church" data-cs="Vraťme život kostelu">Vraťme život kostelu</h1>
-                <hr class="vintage-divider">
-                <p id="hero-desc" data-en="Help repair the roof of the church that is here for everyone. A safe haven for the psychologically vulnerable and those walking the hardest paths." data-cs="Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.">
-                    Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.
-                </p>
-            </section>
-
-            <!-- Donation Card -->
-            <section class="paper-card" id="donate-section">
-                <h2 data-en="How to Help" data-cs="Jak pomoci">Jak pomoci</h2>
-                <hr class="vintage-divider" style="width: 40%;">
+            <div class="bible-container">
                 
-                <p data-en="Every crown counts. Thank you for your support!" data-cs="Každá koruna se počítá. Děkujeme za vaši podporu!">
-                    Každá koruna se počítá. Děkujeme za vaši podporu!
-                </p>
+                <!-- LEFT PAGE: The Mission -->
+                <div class="bible-page left-page">
+                    <h1 class="brand-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h1>
+                    <p class="brand-subtitle" data-en="supports the Church of Saint Wenceslas" data-cs="podporuje Kostel svatého Václava">
+                        podporuje Kostel svatého Václava
+                    </p>
 
-                <div class="donation-section">
-                    <p data-en="Donate any amount to the account:" data-cs="Přispějte jakoukoli částkou na účet:">Přispějte jakoukoli částkou na účet:</p>
-                    
-                    <!-- Bank Account Details -->
-                    <div class="bank-details">
-                        73033081/0710
-                    </div>
-                    <p style="font-size: 0.9rem;" data-en="ČNB Account - Psychiatrická nemocnice Bohnice" data-cs="Účet ČNB - Psychiatrická nemocnice Bohnice">Účet ČNB - Psychiatrická nemocnice Bohnice</p>
+                    <hr class="vintage-divider">
 
-                    <!-- QR Code Image -->
-                    <div class="qr-placeholder">
-                        <!-- Just upload your QR code image and name it qr-code.png -->
-                        <img src="qr-code.png" alt="QR Platba">
-                    </div>
-                    <p style="font-weight: 700;">QR Platba</p>
+                    <h2 id="hero-heading" data-en="Let's bring life back to the church" data-cs="Vraťme život kostelu">
+                        Vraťme život kostelu
+                    </h2>
+
+                    <p id="hero-desc" data-en="Help repair the roof of the church that is here for everyone. A safe haven for the psychologically vulnerable and those walking the hardest paths." data-cs="Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.">
+                        Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.
+                    </p>
                 </div>
-            </section>
+
+                <!-- THE BOOK SPINE (Only visible on larger screens) -->
+                <div class="bible-spine"></div>
+
+                <!-- RIGHT PAGE: The Donation -->
+                <div class="bible-page right-page" id="donate-section">
+                    <h2 class="right-page-title" data-en="How to Help" data-cs="Jak pomoci">Jak pomoci</h2>
+                    <hr class="vintage-divider">
+
+                    <p data-en="Every crown counts. Thank you for your support!" data-cs="Každá koruna se počítá. Děkujeme za vaši podporu!">
+                        Každá koruna se počítá. Děkujeme za vaši podporu!
+                    </p>
+
+                    <div class="donation-section">
+                        <p data-en="Donate any amount to the account:" data-cs="Přispějte jakoukoli částkou na účet:">
+                            Přispějte jakoukoli částkou na účet:
+                        </p>
+
+                        <div class="bank-details">73033081/0710</div>
+
+                        <p data-en="Church of Saint Wenceslas, Bohnice" data-cs="Kostel svatého Václava, Bohnice">
+                            Kostel svatého Václava, Bohnice
+                        </p>
+
+                        <div class="qr-placeholder">
+                            <img src="qr-code.png" alt="QR Platba">
+                        </div>
+
+                        <p style="font-weight: 900;">QR Platba</p>
+                    </div>
+                </div>
+
+            </div> <!-- End Bible Container -->
+
         </main>
 
-        <!-- Bottom Left Logo Integration -->
         <div class="footer-logo">
-            <img src="logo.jpg" alt="Srdce v běhu Logo">
+            <img src="logo.jpg" alt="Srdce v běhu logo">
         </div>
 
     </div>
