@@ -1,0 +1,184 @@
+/* =========================================================
+   CSS VARIABLES (Modular Color Palette & Spacing)
+   Colors: Squid Ink, Parchment, Antique Brass, Embers
+   ========================================================= */
+:root {
+    --color-squid-ink: #0b0c10;
+    --color-squid-ink-light: rgba(18, 20, 26, 0.6);
+    --color-parchment: #f4ecd8;
+    --color-brass: #b5944f;
+    --color-brass-dim: rgba(181, 148, 79, 0.3);
+    --color-ember: #d97736;
+    
+    --font-classic: 'Playfair Display', serif;
+}
+
+/* =========================================================
+   RESET & BASE STYLES
+   ========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: var(--font-classic);
+    background-color: var(--color-squid-ink);
+    color: var(--color-parchment);
+    overflow: hidden; /* Prevents scrollbars so the WebGL background stays immersive */
+}
+
+/* =========================================================
+   BACKGROUND & TEXTURES (GitHub Pages Ready)
+   ========================================================= */
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Temporary dark gradient until we add JS/WebGL in step 3 */
+    background: radial-gradient(circle at center, #1a1c23 0%, var(--color-squid-ink) 100%);
+}
+
+.vintage-film-grain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none; /* Lets users click through the grain */
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    /* Base64 Noise embedded directly so no image files break on GitHub Pages */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC44IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIiBvcGFjaXR5PSIwLjI1Ii8+PC9zdmc+');
+}
+
+/* =========================================================
+   UI LAYER & ANTIQUE GLASSMORPHISM
+   ========================================================= */
+.ui-layer {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/* Antique Frosted Glass Navigation */
+.antique-glass-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background: var(--color-squid-ink-light);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* For Safari compatibility */
+    border-bottom: 1px solid var(--color-brass-dim);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.logo h2 {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--color-parchment);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Vintage Buttons */
+.vintage-btn {
+    background: transparent;
+    color: var(--color-parchment);
+    border: 1px solid var(--color-brass-dim);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-classic);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.vintage-btn:hover {
+    background: rgba(181, 148, 79, 0.1);
+    border-color: var(--color-brass);
+    color: var(--color-ember); /* Glows like an ember on hover */
+    box-shadow: 0 0 10px rgba(217, 119, 54, 0.2);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Main Content & Hero Card */
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.antique-glass-card {
+    text-align: center;
+    padding: 4rem;
+    background: var(--color-squid-ink-light);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-brass-dim);
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(181, 148, 79, 0.05);
+    max-width: 600px;
+    width: 100%;
+}
+
+.antique-glass-card h1 {
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--color-parchment);
+}
+
+.vintage-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-brass), transparent);
+    margin: 2rem 0;
+}
+
+.antique-glass-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #d1c9b8;
+    font-style: italic;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .antique-glass-nav {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .antique-glass-card {
+        padding: 2rem;
+    }
+    
+    .antique-glass-card h1 {
+        font-size: 2rem;
+    }
+}
