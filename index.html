@@ -9,14 +9,8 @@
 </head>
 <body>
 
-    <!-- THE DIRECT IMAGE FIX: Fills the bottom half of the screen -->
-    <div class="bottom-half-church">
-        <img src="church-cutout.png" alt="Kostel sv. Václava">
-    </div>
-
     <div class="ui-layer">
         
-        <!-- Navigation bar -->
         <header class="antique-glass-nav">
             <div class="logo">
                 <h2 data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h2>
@@ -26,12 +20,11 @@
             </div>
         </header>
 
-        <!-- Main Content Area: The Open Bible -->
         <main class="content-container">
             
             <div class="bible-container">
                 
-                <!-- LEFT PAGE: The Mission -->
+                <!-- LEFT PAGE -->
                 <div class="bible-page left-page">
                     <h1 class="brand-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h1>
                     <p class="brand-subtitle" data-en="supports the Church of Saint Wenceslas" data-cs="podporuje Kostel svatého Václava">
@@ -49,12 +42,12 @@
                     </p>
                 </div>
 
-                <!-- THE BOOK SPINE -->
+                <!-- SPINE -->
                 <div class="bible-spine"></div>
 
-                <!-- RIGHT PAGE: The Donation -->
+                <!-- RIGHT PAGE -->
                 <div class="bible-page right-page" id="donate-section">
-                    <h2 class="right-page-title" data-en="How to Help" data-cs="Jak pomoci">Jak pomoci</h2>
+                    <h2 class="right-page-title" data-en="How to Help" data-cs="JAK POMOCI">JAK POMOCI</h2>
                     <hr class="vintage-divider">
 
                     <p data-en="Every crown counts. Thank you for your support!" data-cs="Každá koruna se počítá. Děkujeme za vaši podporu!">
@@ -73,14 +66,20 @@
                         </p>
 
                         <div class="qr-placeholder">
-                            <img src="qr-code.png" alt="QR Platba">
+                            <!-- Make sure the file uploaded to GitHub is exactly QR-Code.png -->
+                            <img src="QR-Code.png" alt="QR Platba">
                         </div>
 
                         <p style="font-weight: 900;">QR Platba</p>
                     </div>
                 </div>
-
             </div>
+
+            <!-- THE BIG CHURCH IMAGE SECTION (Placed directly below the book so it is always visible) -->
+            <div class="big-church-bottom">
+                <img src="church-cutout.png" alt="Kostel sv. Václava">
+            </div>
+
         </main>
 
         <div class="footer-logo">
