@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Srdce v běhu | Vraťme život kostelu</title>
-    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- The church illustration background -->
-    <div class="church-illustration-bg">
-        <img src="church-cutout.png" alt="Kostel sv. Václava s deštníkem">
-    </div>
+    
+    <!-- This overlay makes the background image readable -->
+    <div class="bg-overlay"></div>
 
-    <!-- UI LAYER: Everything the user interacts with -->
+    <!-- UI LAYER -->
     <div class="ui-layer">
         
         <!-- Navigation bar -->
@@ -22,7 +20,6 @@
             <div class="logo">
                 <h2 id="nav-title" data-en="Heart in Motion" data-cs="Srdce v běhu">Srdce v běhu</h2>
             </div>
-            
             <div class="controls">
                 <button id="lang-toggle" class="vintage-btn">EN</button>
             </div>
@@ -30,34 +27,47 @@
 
         <!-- Main Content Area -->
         <main class="content-container">
-            <section class="hero-card paper-card">
-                
-                <h3 class="subheading" data-en="KOSTEL SV. VÁCLAVA" data-cs="KOSTEL SV. VÁCLAVA">
-                    KOSTEL SV. VÁCLAVA
-                </h3>
-                
-                <h1 id="hero-heading" data-en="Let's bring life back to the church" data-cs="Vraťme život kostelu">
-                    Vraťme život kostelu
-                </h1>
-                
+            
+            <!-- Hero Card -->
+            <section class="paper-card">
+                <h3 class="subheading" data-en="KOSTEL SV. VÁCLAVA" data-cs="KOSTEL SV. VÁCLAVA">KOSTEL SV. VÁCLAVA</h3>
+                <h1 id="hero-heading" data-en="Let's bring life back to the church" data-cs="Vraťme život kostelu">Vraťme život kostelu</h1>
                 <hr class="vintage-divider">
-                
                 <p id="hero-desc" data-en="Help repair the roof of the church that is here for everyone. A safe haven for the psychologically vulnerable and those walking the hardest paths." data-cs="Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.">
                     Pomoz opravit střechu kostela, který tu je pro všechny. Bezpečný přístav pro duševně nemocné a ty, kteří kráčí po nejtěžších životních cestách.
                 </p>
+            </section>
 
-                <!-- Action Button for Donations -->
-                <div style="margin-top: 2.5rem;">
-                    <button id="donate-btn" class="solid-btn" data-en="Donate Now" data-cs="Přispět nyní">
-                        Přispět nyní
-                    </button>
+            <!-- Donation Card -->
+            <section class="paper-card" id="donate-section">
+                <h2 data-en="How to Help" data-cs="Jak pomoci">Jak pomoci</h2>
+                <hr class="vintage-divider" style="width: 40%;">
+                
+                <p data-en="Every crown counts. Thank you for your support!" data-cs="Každá koruna se počítá. Děkujeme za vaši podporu!">
+                    Každá koruna se počítá. Děkujeme za vaši podporu!
+                </p>
+
+                <div class="donation-section">
+                    <p data-en="Donate any amount to the account:" data-cs="Přispějte jakoukoli částkou na účet:">Přispějte jakoukoli částkou na účet:</p>
+                    
+                    <!-- Bank Account Details -->
+                    <div class="bank-details">
+                        73033081/0710
+                    </div>
+                    <p style="font-size: 0.9rem;" data-en="ČNB Account - Psychiatrická nemocnice Bohnice" data-cs="Účet ČNB - Psychiatrická nemocnice Bohnice">Účet ČNB - Psychiatrická nemocnice Bohnice</p>
+
+                    <!-- QR Code Image -->
+                    <div class="qr-placeholder">
+                        <!-- Just upload your QR code image and name it qr-code.png -->
+                        <img src="qr-code.png" alt="QR Platba">
+                    </div>
+                    <p style="font-weight: 700;">QR Platba</p>
                 </div>
             </section>
         </main>
 
         <!-- Bottom Left Logo Integration -->
-        <div class="footer-logo" style="position: absolute; bottom: 2rem; left: 2rem; z-index: 50;">
-            <!-- Updated to look for logo.jpg automatically -->
+        <div class="footer-logo">
             <img src="logo.jpg" alt="Srdce v běhu Logo">
         </div>
 
