@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Hearth in Run | Krb v Běhu</title>
+    
+    <!-- Link to our CSS Materials (which we will build in the next message) -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Importing a classic, vintage serif font for that old-world feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- BACKGROUND LAYER: This will hold the WebGL/Canvas squid ink and glowing hearth effects -->
+    <div id="canvas-container"></div>
+    
+    <!-- OVERLAY LAYER: This adds the vintage parchment and old film grain texture over the whole site -->
+    <div class="vintage-film-grain"></div>
+
+    <!-- UI LAYER: Everything the user interacts with, floating above the background -->
+    <div class="ui-layer">
+        
+        <!-- Navigation bar using the antique frosted glass style -->
+        <header class="antique-glass-nav">
+            <div class="logo">
+                <!-- Using data attributes to modularly store both English and Czech texts -->
+                <h2 id="nav-title" data-en="A Hearth in Run" data-cs="Krb v Běhu">A Hearth in Run</h2>
+            </div>
+            
+            <div class="controls">
+                <!-- Language Toggle -->
+                <button id="lang-toggle" class="vintage-btn">CS</button>
+                
+                <!-- Audio Uploader and Controls -->
+                <label for="audio-upload" class="vintage-btn audio-label">
+                    <span id="audio-text" data-en="Upload Audio" data-cs="Nahrát Zvuk">Upload Audio</span>
+                </label>
+                <input type="file" id="audio-upload" accept="audio/*" style="display: none;">
+                <button id="play-btn" class="vintage-btn hidden">▶</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="content-container">
+            <!-- Central Hero Card made of antique glass -->
+            <section class="hero-card antique-glass-card">
+                <h1 id="hero-heading" data-en="Warmth. Momentum. Shelter." data-cs="Teplo. Dynamika. Přístřeší.">
+                    Warmth. Momentum. Shelter.
+                </h1>
+                <hr class="vintage-divider">
+                <p id="hero-desc" data-en="An old-world sanctuary for the modern athlete." data-cs="Starosvětské útočiště pro moderního sportovce.">
+                    An old-world sanctuary for the modern athlete.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Hidden audio element that our JavaScript will control -->
+    <audio id="bg-audio" loop></audio>
+
+    <!-- Link to our JavaScript Functions (which we will build in the third message) -->
+    <script src="script.js"></script>
+</body>
+</html>
