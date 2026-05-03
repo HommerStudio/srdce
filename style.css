@@ -1,12 +1,9 @@
-/* =========================================================
-   CSS VARIABLES
-   ========================================================= */
 :root {
-    --color-bg-cream: #Faf4ea;
-    --color-text-dark: #4a3e2a;
-    --color-accent-gold: #c29d51;
-    --color-accent-red: #d92d27;
-    --color-bg-white: #ffffff;
+    --color-bg-cream: #f4ebd8;
+    --color-page-bg: #fffbf2;
+    --color-text-dark: #3e2a14;
+    --color-accent-gold: #b89146;
+    --color-accent-red: #c92c22;
     --font-main: 'Merriweather', serif;
 }
 
@@ -16,32 +13,30 @@
     box-sizing: border-box;
 }
 
-body, html {
+html, body {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     font-family: var(--font-main);
     background-color: var(--color-bg-cream);
     color: var(--color-text-dark);
+    overflow-x: hidden;
 }
 
 /* =========================================================
-   THE TRUE FULL-SCREEN BACKGROUND FIX
+   THE BULLETPROOF FULL-SCREEN BACKGROUND FIX
    ========================================================= */
-body {
-    /* This forces the church image to fill the entire screen, centered, behind everything */
+.church-full-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url('church-cutout.png');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover; /* Forces it to fill the whole screen, making it huge */
-    background-attachment: fixed; /* Keeps it still while the user scrolls */
-}
-
-/* We add a semi-transparent cream overlay so the text remains readable over the giant church */
-.bg-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(250, 244, 234, 0.85); /* Adjust this (0.85) to make the church darker/lighter */
-    z-index: 0;
+    background-size: cover; /* Forces it to stretch over the whole screen */
+    opacity: 0.25; /* Subtle watermark */
+    z-index: -1;
     pointer-events: none;
 }
 
@@ -50,26 +45,27 @@ body {
    ========================================================= */
 .ui-layer {
     position: relative;
-    z-index: 10;
+    z-index: 2;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
 .antique-glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background: rgba(250, 244, 234, 0.95);
+    background: rgba(255, 251, 242, 0.95);
     border-bottom: 2px solid var(--color-accent-gold);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .logo h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -79,84 +75,109 @@ body {
     color: var(--color-text-dark);
     border: 2px solid var(--color-text-dark);
     padding: 0.3rem 0.8rem;
+    border-radius: 4px;
     font-family: var(--font-main);
     font-weight: 700;
-    border-radius: 4px;
     cursor: pointer;
 }
 
 /* =========================================================
-   MAIN CONTENT CARDS (Hero & Donation)
+   BIBLE / BOOK LAYOUT
    ========================================================= */
 .content-container {
-    flex-grow: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 1rem 7rem;
     display: flex;
-    flex-direction: column; /* Stacks the cards vertically */
-    align-items: center;
-    padding: 2rem 1.5rem 8rem 1.5rem; /* Extra bottom padding for the logo */
-    gap: 2rem; /* Space between cards */
+    justify-content: center;
 }
 
-.paper-card {
-    text-align: center;
-    padding: 2.5rem 1.5rem;
-    background: var(--color-bg-white);
-    border: 2px solid var(--color-accent-gold);
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(74, 62, 42, 0.15);
-    max-width: 600px;
+.bible-container {
+    display: flex;
+    flex-direction: column; /* Stacks pages on mobile */
+    background: var(--color-page-bg);
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(62, 42, 20, 0.2), inset 0 0 40px rgba(184, 145, 70, 0.1);
+    border: 2px solid #e0cdab;
+    overflow: hidden;
     width: 100%;
 }
 
-.subheading {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    color: var(--color-accent-gold);
-    margin-bottom: 0.5rem;
+.bible-page {
+    padding: 3rem 2rem;
+    text-align: center;
 }
 
-.paper-card h1 {
-    font-size: 2.2rem;
+.left-page {
+    /* Subtle shadow at the bottom of the top page for mobile */
+    box-shadow: inset 0 -15px 15px -15px rgba(0,0,0,0.1);
+}
+
+.right-page {
+    background: #fdf8eb; /* Slightly darker to differentiate */
+    box-shadow: inset 0 15px 15px -15px rgba(0,0,0,0.1);
+}
+
+/* Typography for the pages */
+.brand-title {
+    font-size: 2.8rem;
     font-weight: 900;
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    color: var(--color-text-dark);
+    margin-bottom: 0.2rem;
+    line-height: 1.1;
 }
 
-.vintage-divider {
-    border: 0;
-    height: 2px;
-    background: var(--color-accent-gold);
-    margin: 1.5rem auto;
-    width: 60%;
-}
-
-.paper-card p {
+.brand-subtitle {
     font-size: 1.1rem;
-    line-height: 1.6;
-    color: #5c4f3a;
+    color: #7a6344;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     margin-bottom: 1.5rem;
 }
 
+#hero-heading, .right-page-title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.vintage-divider {
+    width: 50%;
+    height: 2px;
+    margin: 1.5rem auto;
+    border: 0;
+    background: var(--color-accent-gold);
+}
+
+.bible-page p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #5f513d;
+}
+
 /* =========================================================
-   DONATION SECTION & QR CODE
+   DONATION SECTION
    ========================================================= */
 .donation-section {
-    background: #fdfaf5;
-    border: 2px dashed var(--color-accent-gold);
-    padding: 2rem 1rem;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 2px dashed rgba(184, 145, 70, 0.6);
     border-radius: 8px;
-    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .bank-details {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: var(--color-text-dark);
     margin: 1rem 0;
     padding: 1rem;
-    background: rgba(194, 157, 81, 0.1); /* Light gold highlight */
+    background: rgba(184, 145, 70, 0.15);
     border-radius: 6px;
+    letter-spacing: 2px;
 }
 
 .qr-placeholder {
@@ -179,17 +200,50 @@ body {
    ========================================================= */
 .footer-logo {
     position: fixed;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    z-index: 50;
-    background: rgba(250, 244, 234, 0.9);
-    padding: 8px;
+    left: 1rem;
+    bottom: 1rem;
+    z-index: 25;
+    background: rgba(255, 251, 242, 0.9);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .footer-logo img {
     width: 70px;
     height: auto;
     display: block;
+}
+
+/* =========================================================
+   DESKTOP / TABLET VIEW (The "Open Book" Look)
+   ========================================================= */
+@media (min-width: 850px) {
+    .bible-container {
+        flex-direction: row; /* Puts pages side by side */
+        border-radius: 12px 20px 20px 12px;
+    }
+    
+    .bible-page {
+        flex: 1; /* Both pages take up 50% width */
+        padding: 4rem 3rem;
+    }
+
+    /* 3D Shadows curving into the spine */
+    .left-page {
+        box-shadow: inset -25px 0 25px -25px rgba(0,0,0,0.3);
+    }
+
+    .right-page {
+        box-shadow: inset 25px 0 25px -25px rgba(0,0,0,0.3);
+    }
+
+    /* The actual book spine in the middle */
+    .bible-spine {
+        width: 30px;
+        background: linear-gradient(to right, #e3ceab, #fffbf2, #e3ceab);
+        border-left: 1px solid #d4be9b;
+        border-right: 1px solid #d4be9b;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+    }
 }
