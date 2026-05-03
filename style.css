@@ -1,12 +1,12 @@
 /* =========================================================
-   CSS VARIABLES (Color Palette from the Poster)
+   CSS VARIABLES
    ========================================================= */
 :root {
     --color-bg-cream: #Faf4ea;
     --color-text-dark: #4a3e2a;
     --color-accent-gold: #c29d51;
     --color-accent-red: #d92d27;
-    
+    --color-bg-white: #ffffff;
     --font-main: 'Merriweather', serif;
 }
 
@@ -18,35 +18,31 @@
 
 body, html {
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     font-family: var(--font-main);
     background-color: var(--color-bg-cream);
     color: var(--color-text-dark);
 }
 
 /* =========================================================
-   BACKGROUND CHURCH ILLUSTRATION (MASSIVE WATERMARK)
+   THE TRUE FULL-SCREEN BACKGROUND FIX
    ========================================================= */
-.church-illustration-bg {
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    z-index: 1; 
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.18; /* Slightly increased opacity so it stands out more */
-    pointer-events: none; 
+body {
+    /* This forces the church image to fill the entire screen, centered, behind everything */
+    background-image: url('church-cutout.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Forces it to fill the whole screen, making it huge */
+    background-attachment: fixed; /* Keeps it still while the user scrolls */
 }
 
-.church-illustration-bg img {
-    height: 140vh; /* Forces the image to be 40% taller than the screen, making it huge */
-    width: auto;   /* Keeps the natural proportions of the cutout */
-    max-width: none; /* Removes any default size limits */
-    object-fit: contain;
+/* We add a semi-transparent cream overlay so the text remains readable over the giant church */
+.bg-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(250, 244, 234, 0.85); /* Adjust this (0.85) to make the church darker/lighter */
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* =========================================================
@@ -57,16 +53,15 @@ body, html {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    min-height: 100%; 
+    min-height: 100vh;
 }
 
 .antique-glass-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem; 
-    background: rgba(250, 244, 234, 0.9);
-    backdrop-filter: blur(8px);
+    padding: 1rem 1.5rem;
+    background: rgba(250, 244, 234, 0.95);
     border-bottom: 2px solid var(--color-accent-gold);
     position: sticky;
     top: 0;
@@ -74,10 +69,9 @@ body, html {
 }
 
 .logo h2 {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 .vintage-btn {
@@ -92,26 +86,26 @@ body, html {
 }
 
 /* =========================================================
-   MAIN CONTENT & PAPER CARD
+   MAIN CONTENT CARDS (Hero & Donation)
    ========================================================= */
 .content-container {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Stacks the cards vertically */
     align-items: center;
-    padding: 1.5rem; 
+    padding: 2rem 1.5rem 8rem 1.5rem; /* Extra bottom padding for the logo */
+    gap: 2rem; /* Space between cards */
 }
 
 .paper-card {
     text-align: center;
-    padding: 2.5rem 1.5rem; 
-    background: rgba(255, 255, 255, 0.92); /* Slight transparency */
+    padding: 2.5rem 1.5rem;
+    background: var(--color-bg-white);
     border: 2px solid var(--color-accent-gold);
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(74, 62, 42, 0.15);
     max-width: 600px;
     width: 100%;
-    margin-bottom: 5rem; 
 }
 
 .subheading {
@@ -122,7 +116,7 @@ body, html {
 }
 
 .paper-card h1 {
-    font-size: 2.2rem; 
+    font-size: 2.2rem;
     font-weight: 900;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -134,44 +128,68 @@ body, html {
     height: 2px;
     background: var(--color-accent-gold);
     margin: 1.5rem auto;
-    width: 60%; 
+    width: 60%;
 }
 
 .paper-card p {
     font-size: 1.1rem;
     line-height: 1.6;
     color: #5c4f3a;
-}
-
-.solid-btn {
-    background: var(--color-accent-red);
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    font-family: var(--font-main);
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(217, 45, 39, 0.3);
+    margin-bottom: 1.5rem;
 }
 
 /* =========================================================
-   FOOTER LOGO FIX
+   DONATION SECTION & QR CODE
+   ========================================================= */
+.donation-section {
+    background: #fdfaf5;
+    border: 2px dashed var(--color-accent-gold);
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.bank-details {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--color-text-dark);
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(194, 157, 81, 0.1); /* Light gold highlight */
+    border-radius: 6px;
+}
+
+.qr-placeholder {
+    width: 200px;
+    height: 200px;
+    margin: 1.5rem auto;
+    border: 2px solid var(--color-text-dark);
+    padding: 10px;
+    background: white;
+}
+
+.qr-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================================================
+   FOOTER LOGO
    ========================================================= */
 .footer-logo {
-    position: fixed; 
+    position: fixed;
     bottom: 1.5rem;
     left: 1.5rem;
     z-index: 50;
-    background: rgba(250, 244, 234, 0.8); 
-    padding: 5px;
+    background: rgba(250, 244, 234, 0.9);
+    padding: 8px;
     border-radius: 8px;
-    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .footer-logo img {
-    width: 80px; 
+    width: 70px;
     height: auto;
-    display: block; 
+    display: block;
 }
